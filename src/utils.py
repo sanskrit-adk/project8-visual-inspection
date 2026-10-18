@@ -45,6 +45,15 @@ def apply_fast(cfg: dict, fast: bool) -> dict:
     return cfg
 
 
+def tagged(cfg: dict, name: str) -> str:
+    """Append '_fast' to output names in --fast mode.
+
+    Fast runs are smoke tests; tagging their checkpoints, metrics and figures
+    means they can never overwrite (or be mistaken for) full-run results.
+    """
+    return f"{name}_fast" if cfg.get("is_fast") else name
+
+
 def set_seed(seed: int = 42) -> None:
     """Seed Python, NumPy and PyTorch (CPU + GPU).
 
@@ -95,6 +104,39 @@ def save_json(obj, path: str | Path) -> None:
 
 def save_fig(fig, name: str, cfg: dict) -> Path:
     """Save a matplotlib figure as PNG (dpi 150) into results/figures/."""
+    import matplotlib.pyplot as plt
+
     out = get_path(cfg, "figures_dir") / f"{name}.png"
     fig.savefig(out, dpi=150, bbox_inches="tight")
+    plt.close(fig)
     return out
+
+
+# ---------------------------------------------------------------------
+# Plot style - one look for every figure in the project
+# ---------------------------------------------------------------------
+# Colour-blind-validated categorical palette, always used in this fixed order
+# so the same thing gets the same colour in every figure.
+PALETTE = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
+CLASS_COLORS = {0: PALETTE[0], 1: PALETTE[1]}        # OK = blue, Defect = orange
+CLASS_NAMES = {0: "OK", 1: "Defect"}
+INK, INK_2, GRID = "#0b0b0b", "#52514e", "#e4e3df"
+
+
+def plot_style() -> None:
+    """Recessive grid/axes, dark text, consistent fonts for all figures."""
+    import matplotlib as mpl
+
+    mpl.rcParams.update({
+        "figure.facecolor": "#fcfcfb", "axes.facecolor": "#fcfcfb",
+        "axes.edgecolor": GRID, "axes.linewidth": 0.8,
+        "axes.grid": True, "grid.color": GRID, "grid.linewidth": 0.6,
+        "axes.axisbelow": True,
+        "axes.spines.top": False, "axes.spines.right": False,
+        "axes.titlesize": 12, "axes.titleweight": "bold", "axes.labelsize": 10,
+        "axes.labelcolor": INK_2, "axes.titlecolor": INK,
+        "xtick.color": INK_2, "ytick.color": INK_2,
+        "legend.frameon": False, "font.size": 10,
+        "axes.prop_cycle": mpl.cycler(color=PALETTE),
+        "lines.linewidth": 2,
+    })

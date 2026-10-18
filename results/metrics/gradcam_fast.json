@@ -1,0 +1,101 @@
+{
+  "castings": {
+    "model": "resnet18_finetune",
+    "threshold": 0.443,
+    "n_images": 118,
+    "part_area_frac": 0.45361328125,
+    "bg_area_frac": 0.33349609375,
+    "all": {
+      "n": 118,
+      "part_energy": 0.2538195848464966,
+      "bg_energy": 0.29932504892349243,
+      "peak_on_part": 0.11016949152542373
+    },
+    "true_positive": {
+      "n": 12,
+      "part_energy": 0.565593421459198,
+      "bg_energy": 0.24244295060634613,
+      "peak_on_part": 0.8333333333333334
+    },
+    "false_negative": {
+      "n": 0,
+      "part_energy": null,
+      "bg_energy": null,
+      "peak_on_part": null
+    },
+    "false_positive": {
+      "n": 7,
+      "part_energy": 0.5343027114868164,
+      "bg_energy": 0.26477596163749695,
+      "peak_on_part": 0.14285714285714285
+    },
+    "true_negative": {
+      "n": 99,
+      "part_energy": 0.19619670510292053,
+      "bg_energy": 0.30866268277168274,
+      "peak_on_part": 0.020202020202020204
+    },
+    "randomization_spearman_mean": 0.1598865885415928,
+    "randomization_n": 64,
+    "randomization_constant_maps": 16,
+    "flagged": {
+      "n": 19,
+      "part_energy": 0.5540652871131897,
+      "bg_energy": 0.2506709098815918,
+      "peak_on_part": 0.5789473684210527
+    },
+    "sanity_score_part": 1.2214485554443621,
+    "sanity_score_bg": 0.7516457151354319
+  },
+  "neu": {
+    "n_images": 198,
+    "pointing_game_acc": 0.5757575757575758,
+    "box_energy_mean": 0.4790291488170624,
+    "box_area_mean": 0.4326211948587437,
+    "energy_over_area": 1.107271568082723,
+    "per_class": [
+      {
+        "class": "crazing",
+        "n": 33,
+        "box_area": 0.6391139174952651,
+        "box_energy": 0.698451042175293,
+        "pointing": 0.8484848484848485
+      },
+      {
+        "class": "inclusion",
+        "n": 33,
+        "box_area": 0.16713090376420456,
+        "box_energy": 0.19262473285198212,
+        "pointing": 0.18181818181818182
+      },
+      {
+        "class": "patches",
+        "n": 33,
+        "box_area": 0.34504283558238635,
+        "box_energy": 0.39766669273376465,
+        "pointing": 0.6060606060606061
+      },
+      {
+        "class": "pitted_surface",
+        "n": 33,
+        "box_area": 0.7926839192708334,
+        "box_energy": 0.8426727056503296,
+        "pointing": 0.9090909090909091
+      },
+      {
+        "class": "rolled-in_scale",
+        "n": 33,
+        "box_area": 0.4456472685842803,
+        "box_energy": 0.4733884334564209,
+        "pointing": 0.6060606060606061
+      },
+      {
+        "class": "scratches",
+        "n": 33,
+        "box_area": 0.20610832445549243,
+        "box_energy": 0.2693711519241333,
+        "pointing": 0.30303030303030304
+      }
+    ]
+  }
+}

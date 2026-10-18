@@ -6,6 +6,7 @@ torchvision>=0.17
 numpy>=1.26
 pandas>=2.1
 scikit-learn>=1.4
+scipy>=1.11
 pillow>=10.0
 pyyaml>=6.0
 tqdm>=4.66
@@ -22,3 +23,7 @@ opencv-python-headless>=4.9
 
 # Demo app
 streamlit>=1.32
+
+# Website export (scripts/09_export_site.py)
+onnx>=1.16
+onnxruntime>=1.18

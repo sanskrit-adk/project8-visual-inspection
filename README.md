@@ -1,5 +1,7 @@
 # Project 8 — Automated Visual Quality Inspection
 
+**Live site:** https://sanskrit-adk.github.io/project8-visual-inspection/ — in-browser demo + results.
+
 A CNN system that flags defective cast parts from camera images, localises the defect with
 Grad-CAM, chooses a decision threshold from asymmetric costs, and tests whether its accuracy
 comes from real defect-finding skill or from quirks in how the data was collected.
@@ -35,7 +37,7 @@ create an API token at kaggle.com → Settings → API and place `kaggle.json` i
 
 ## Running each phase
 
-Every training script accepts `--fast` (128px images, 3 epochs, 25% data subset) so it finishes
+Every training script accepts `--fast` (128px images, 3 epochs, 25% data subset; outputs get a `_fast` suffix) so it finishes
 on a laptop CPU in minutes. Without `--fast`, settings are meant for a GPU.
 
 | Phase | Command | Output |
@@ -51,9 +53,15 @@ on a laptop CPU in minutes. Without `--fast`, settings are meant for a GPU.
 | 7 Grad-CAM | `python scripts/07_gradcam.py [--fast]` | heatmap grids, sanity score |
 | 8 Robustness | `python scripts/08_robustness.py [--fast]` | shift results, shortcut tests |
 | 9 Demo | `streamlit run app/streamlit_app.py` | web demo |
+| 9b Website | `python scripts/09_export_site.py` | `docs/` (GitHub Pages: ONNX model runs in the browser) |
 | 10 Report notes | `python scripts/10_make_report_notes.py` | `report/REPORT_NOTES.md` |
 
-(Scripts for phases 1–10 are added as each phase is built.)
+Run everything in order with `python scripts/run_all.py [--fast]` (stops at the first failing
+phase; resume with `--from <phase>`, e.g. `--from 4` after training on a GPU). On a laptop CPU the
+fast run takes ~15–20 min; the full run takes several hours on CPU and minutes on a GPU.
+
+Fast-mode outputs carry a `_fast` suffix. The demo and `10_make_report_notes.py` use full-run
+results when they exist and fall back to the fast ones, labelling which they used.
 
 ## Layout
 
@@ -61,7 +69,7 @@ on a laptop CPU in minutes. Without `--fast`, settings are meant for a GPU.
 config.yaml        all paths + hyperparameters (seed 42)
 src/               reusable code (data, models, training, evaluation, ...)
 scripts/           one entry script per phase
-splits/            train/val/test/production CSVs shared by the team
+splits/            train/val/test/production CSVs shared by the team (production = untouched final check)
 results/figures/   every figure (PNG, dpi 150)
 results/metrics/   every number (JSON/CSV) — the report only quotes these
 DECISIONS.md       decision log

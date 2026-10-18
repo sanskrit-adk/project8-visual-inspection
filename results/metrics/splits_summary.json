@@ -1,0 +1,118 @@
+{
+  "defect_ratio_target": 0.1,
+  "split_fracs_target": {
+    "production": 0.1,
+    "train": 0.63,
+    "val": 0.135,
+    "test": 0.135
+  },
+  "ok_frac_actual": {
+    "train": 0.62958240357029,
+    "val": 0.13516098182977368,
+    "test": 0.13516098182977368,
+    "production": 0.10009563277016258
+  },
+  "splits": {
+    "train": {
+      "n": 2194,
+      "n_ok": 1975,
+      "n_defect": 219,
+      "defect_frac": 0.09981768459434823,
+      "n_dup_groups": 443,
+      "n_defect_groups": 219,
+      "from_kaggle_test": 193,
+      "label_conflicts": 11
+    },
+    "val": {
+      "n": 471,
+      "n_ok": 424,
+      "n_defect": 47,
+      "defect_frac": 0.09978768577494693,
+      "n_dup_groups": 93,
+      "n_defect_groups": 47,
+      "from_kaggle_test": 45,
+      "label_conflicts": 2
+    },
+    "test": {
+      "n": 471,
+      "n_ok": 424,
+      "n_defect": 47,
+      "defect_frac": 0.09978768577494693,
+      "n_dup_groups": 94,
+      "n_defect_groups": 47,
+      "from_kaggle_test": 39,
+      "label_conflicts": 0
+    },
+    "production": {
+      "n": 349,
+      "n_ok": 314,
+      "n_defect": 35,
+      "defect_frac": 0.10028653295128939,
+      "n_dup_groups": 41,
+      "n_defect_groups": 35,
+      "from_kaggle_test": 28,
+      "label_conflicts": 0
+    }
+  },
+  "images_used": 3485,
+  "defects_discarded_by_subsampling": 3863,
+  "train_pos_weight": 9.018264840182649,
+  "leakage": {
+    "duplicate_groups_shared_between_splits": 0,
+    "files_shared_between_splits": 0
+  },
+  "shortcut_train_to_test": {
+    "test_prevalence": 0.09978768577494693,
+    "background_only": {
+      "roc_auc": 0.9551886792452831,
+      "average_precision": 0.6823772414978866
+    },
+    "all_stats": {
+      "roc_auc": 0.9811320754716981,
+      "average_precision": 0.9089788134214093
+    }
+  },
+  "sampler": {
+    "imbalance": "sampler",
+    "train_defect_frac": 0.0998176857829094,
+    "defect_frac_served_per_epoch": 0.49225160479545593
+  },
+  "loader_smoke_test_fast": {
+    "train": {
+      "n_images_fast": 549,
+      "batch_shape": [
+        32,
+        3,
+        128,
+        128
+      ],
+      "label_dtype": "torch.float32",
+      "x_min": -2.1179039478302,
+      "x_max": 2.640000104904175
+    },
+    "val": {
+      "n_images_fast": 118,
+      "batch_shape": [
+        32,
+        3,
+        128,
+        128
+      ],
+      "label_dtype": "torch.float32",
+      "x_min": -2.1007792949676514,
+      "x_max": 2.5877127647399902
+    },
+    "test": {
+      "n_images_fast": 118,
+      "batch_shape": [
+        32,
+        3,
+        128,
+        128
+      ],
+      "label_dtype": "torch.float32",
+      "x_min": -2.1179039478302,
+      "x_max": 2.6051416397094727
+    }
+  }
+}

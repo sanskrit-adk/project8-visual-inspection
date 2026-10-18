@@ -1,0 +1,50 @@
+{
+  "prevalence": 0.5730811105062602,
+  "cv_folds": 5,
+  "cv": "StratifiedGroupKFold(dup_group)",
+  "note": "Chance level: ROC-AUC 0.5, AP = prevalence.",
+  "background_only": {
+    "features": [
+      "bg_mean",
+      "bg_std"
+    ],
+    "roc_auc": 0.8391434549842024,
+    "average_precision": 0.828351846135428
+  },
+  "global_intensity": {
+    "features": [
+      "mean",
+      "std"
+    ],
+    "roc_auc": 0.8972842882239823,
+    "average_precision": 0.8908893815687172
+  },
+  "part_intensity": {
+    "features": [
+      "part_mean",
+      "part_std"
+    ],
+    "roc_auc": 0.5221307765452097,
+    "average_precision": 0.5888790027643929
+  },
+  "edge_density": {
+    "features": [
+      "edge_density"
+    ],
+    "roc_auc": 0.7523697176672024,
+    "average_precision": 0.815606038959123
+  },
+  "all_stats": {
+    "features": [
+      "mean",
+      "std",
+      "edge_density",
+      "part_mean",
+      "part_std",
+      "bg_mean",
+      "bg_std"
+    ],
+    "roc_auc": 0.9517423551884203,
+    "average_precision": 0.9680932380097353
+  }
+}

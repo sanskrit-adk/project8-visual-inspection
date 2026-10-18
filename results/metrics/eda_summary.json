@@ -1,0 +1,99 @@
+{
+  "n_images": 7348,
+  "counts": {
+    "test_OK": 262,
+    "test_Defect": 453,
+    "train_OK": 2875,
+    "train_Defect": 3758
+  },
+  "defect_fraction_raw": 0.5730811105062602,
+  "image_sizes": [
+    {
+      "width": 300,
+      "height": 300,
+      "n": 7348
+    }
+  ],
+  "image_modes": {
+    "RGB": 7348
+  },
+  "stats_by_class": {
+    "OK": {
+      "mean": {
+        "mean": 149.77472930703908,
+        "std": 6.47957689669981
+      },
+      "std": {
+        "mean": 62.268349609520925,
+        "std": 2.7335356823425223
+      },
+      "edge_density": {
+        "mean": 0.041236216484256016,
+        "std": 0.0033483238769857924
+      },
+      "part_mean": {
+        "mean": 126.36841070572206,
+        "std": 8.831244248964515
+      },
+      "part_std": {
+        "mean": 76.42491423996307,
+        "std": 6.519329059960891
+      },
+      "bg_mean": {
+        "mean": 174.86550410583516,
+        "std": 13.762510723713957
+      },
+      "bg_std": {
+        "mean": 22.463087217192914,
+        "std": 3.8240236130859713
+      }
+    },
+    "Defect": {
+      "mean": {
+        "mean": 139.25583389416298,
+        "std": 5.808801548897043
+      },
+      "std": {
+        "mean": 58.57498051089194,
+        "std": 3.085143646580406
+      },
+      "edge_density": {
+        "mean": 0.045577355603050214,
+        "std": 0.0047211856342001
+      },
+      "part_mean": {
+        "mean": 124.40549403770154,
+        "std": 7.654634807931131
+      },
+      "part_std": {
+        "mean": 75.64169320854091,
+        "std": 4.945045073197314
+      },
+      "bg_mean": {
+        "mean": 158.03513617007133,
+        "std": 12.19769230766749
+      },
+      "bg_std": {
+        "mean": 17.837445019146973,
+        "std": 3.9013739269409413
+      }
+    }
+  },
+  "duplicates": {
+    "threshold": 0.9762174487113953,
+    "threshold_source": "auto",
+    "within_class_nn_corr_median": 0.9879909157752991,
+    "cross_class_nn_corr_median": 0.9358925819396973,
+    "n_groups": 3149,
+    "n_groups_size_gt1": 964,
+    "images_in_dup_groups": 5163,
+    "frac_images_in_dup_groups": 0.7026401741970604,
+    "largest_group": 309,
+    "largest_group_frac": 0.042052259118127384,
+    "groups_spanning_orig_train_and_test": 279,
+    "images_in_groups_spanning_orig_split": 3243,
+    "groups_with_both_labels": 14,
+    "images_whose_nn_copy_has_other_label": 33,
+    "note": "Groups are connected components (single linkage), so chains of augmented copies merge into large groups. That over-groups, which is the safe direction for a leakage-free split."
+  }
+}

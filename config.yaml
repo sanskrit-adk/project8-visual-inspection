@@ -29,7 +29,25 @@ data:
   # The raw data has MORE defects than good parts. Real lines have rare defects,
   # so we subsample defects to this fraction of the train/val/test pool.
   defect_ratio: 0.10
-  split: {train: 0.70, val: 0.15, test: 0.15}
+  # Splits are made from whole duplicate groups (see dup_* below) so copies of one
+  # part never land on both sides. "production" is held out first: a fresh batch
+  # no phase trains or tunes on, used for the final check and the demo.
+  production_frac: 0.10
+  split: {train: 0.70, val: 0.15, test: 0.15}   # of what remains after production
+  # The casting sits centred in the frame with its rim at ~0.40 x image width.
+  # Pixels inside part_radius are "part"; outside background_radius are "background"
+  # (the gap between them absorbs small position shifts). Reused by Grad-CAM (Phase 7)
+  # and the background-only shortcut test (Phase 8).
+  part_radius_frac: 0.38
+  background_radius_frac: 0.46
+  # Near-duplicate check: correlation of small greyscale thumbnails.
+  # "auto" = 99th percentile of the cross-class nearest-neighbour correlation.
+  # An OK image and a defect image can never be copies of the same part, so that
+  # distribution shows how similar *different* parts look; anything above it is
+  # treated as a likely copy. A number here overrides the automatic value.
+  dup_thumb_size: 32
+  dup_corr_threshold: auto
+  dup_auto_percentile: 99
 
 # ---------------------------------------------------------------------
 # Image pipeline
@@ -45,6 +63,9 @@ augmentation:
   hflip: true
   vflip: true
   rotation_deg: 15
+  # Rotation exposes corners; fill them with one neutral grey for both classes so the
+  # fill can't become a class cue (background brightness already differs by class).
+  rotation_fill: 160
   brightness: 0.2
   contrast: 0.2
   blur_prob: 0.2

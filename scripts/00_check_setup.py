@@ -17,7 +17,7 @@ import torch  # noqa: E402
 
 from src.utils import get_device, get_path, load_config, save_json, set_seed  # noqa: E402
 
-PACKAGES = ["torch", "torchvision", "numpy", "pandas", "scikit-learn", "matplotlib",
+PACKAGES = ["torch", "torchvision", "numpy", "pandas", "scikit-learn", "scipy", "matplotlib",
             "pyyaml", "pillow", "kagglehub", "grad-cam", "opencv-python-headless",
             "streamlit", "tqdm"]
 
