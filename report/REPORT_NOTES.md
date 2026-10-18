@@ -29,10 +29,10 @@ _Generated 2026-10-18 by `scripts/10_make_report_notes.py`. Every number below i
 
 | model | average_precision | roc_auc | recall_at_p95 | best_epoch | train_sec | params_trainable |
 |---|---|---|---|---|---|---|
-| scratch_cnn | 0.747 | 0.881 | 0.583 | 3 | 68 | 1,173,473 |
-| resnet18_frozen | 0.569 | 0.782 | 0.333 | 3 | 23 | 513 |
-| resnet18_finetune | 0.994 | 0.999 | 0.917 | 1 | 48 | 11,177,025 |
-| mobilenet_v3_small | 0.879 | 0.985 | 0.417 | 3 | 21 | 1,518,881 |
+| scratch_cnn | 0.747 | 0.881 | 0.583 | 3 | 114 | 1,173,473 |
+| resnet18_frozen | 0.569 | 0.782 | 0.333 | 3 | 43 | 513 |
+| resnet18_finetune | 0.994 | 0.999 | 0.917 | 1 | 95 | 11,177,025 |
+| mobilenet_v3_small | 0.879 | 0.985 | 0.417 | 3 | 67 | 1,518,881 |
 
 - Background-only baseline on val: AP 0.615.
 
@@ -53,18 +53,18 @@ Test: 118 images, 12 defects, 38 duplicate groups. Selected model (best val AP):
 
 | model | AP [95% CI] | AUC [95% CI] | brier | test_precision_p95 | test_recall_p95 |
 |---|---|---|---|---|---|
-| scratch_cnn | 0.694 [0.429, 0.901] | 0.869 [0.659, 0.983] | 0.067 | 1.000 | 0.417 |
-| resnet18_frozen | 0.632 [0.375, 0.870] | 0.818 [0.655, 0.945] | 0.265 | 1.000 | 0.417 |
-| resnet18_finetune | 0.994 [0.967, 1.000] | 0.999 [0.995, 1.000] | 0.076 | 1.000 | 0.833 |
-| mobilenet_v3_small | 0.941 [0.836, 1.000] | 0.991 [0.971, 1.000] | 0.048 | 1.000 | 0.500 |
-| background_only | 0.542 [0.315, 0.818] | 0.939 [0.853, 0.985] | 0.077 | 1.000 | 0.083 |
+| scratch_cnn | 0.694 [0.429, 0.924] | 0.869 [0.691, 0.985] | 0.067 | 1.000 | 0.417 |
+| resnet18_frozen | 0.632 [0.358, 0.870] | 0.818 [0.651, 0.949] | 0.265 | 1.000 | 0.417 |
+| resnet18_finetune | 0.994 [0.966, 1.000] | 0.999 [0.995, 1.000] | 0.076 | 1.000 | 0.833 |
+| mobilenet_v3_small | 0.941 [0.829, 1.000] | 0.991 [0.969, 1.000] | 0.048 | 1.000 | 0.500 |
+| background_only | 0.542 [0.303, 0.878] | 0.939 [0.846, 0.986] | 0.077 | 1.000 | 0.083 |
 
 Paired AP difference (selected minus other):
 
-- vs scratch_cnn: +0.300 [+0.091, +0.570] (CI excludes 0)
-- vs resnet18_frozen: +0.362 [+0.126, +0.618] (CI excludes 0)
-- vs mobilenet_v3_small: +0.052 [-0.009, +0.164]
-- vs background_only: +0.452 [+0.182, +0.684] (CI excludes 0)
+- vs scratch_cnn: +0.300 [+0.071, +0.567] (CI excludes 0)
+- vs resnet18_frozen: +0.362 [+0.120, +0.641] (CI excludes 0)
+- vs mobilenet_v3_small: +0.052 [-0.009, +0.167]
+- vs background_only: +0.452 [+0.122, +0.685] (CI excludes 0)
 
 At the val 95%-precision threshold (0.744): TP 10, FP 0, FN 2, TN 106.
 Figures: `results/figures/pr_roc_curves_fast.png`, `results/figures/reliability_fast.png`, `results/figures/confusion_matrix_fast.png`, `results/figures/error_gallery_fast.png`
@@ -103,18 +103,18 @@ Figures: `results/figures/cost_curve_fast.png`, `results/figures/cost_sensitivit
 
 ## 6. Latency - FAST smoke run
 
-Device `cpu`, 8 threads, 128px; preprocessing 4.3 ms/image; line budget 500 ms/part.
+Device `cpu`, 8 threads, 128px; preprocessing 7.0 ms/image; line budget 500 ms/part.
 
 | model | batch_size | median_ms_per_image | p95_ms_per_image | images_per_sec | headroom_vs_line | checkpoint_mb |
 |---|---|---|---|---|---|---|
-| scratch_cnn | 1 | 22.789 | 131.921 | 43.882 | 22x | 4.719 |
-| scratch_cnn | 32 | 18.148 | 21.887 | 55.104 | 28x | 4.719 |
-| resnet18_frozen | 1 | 43.889 | 112.771 | 22.785 | 11x | 44.788 |
-| resnet18_frozen | 32 | 15.625 | 21.416 | 64.001 | 32x | 44.788 |
-| resnet18_finetune | 1 | 34.788 | 122.987 | 28.746 | 14x | 44.789 |
-| resnet18_finetune | 32 | 14.712 | 18.029 | 67.972 | 34x | 44.789 |
-| mobilenet_v3_small | 1 | 20.267 | 44.695 | 49.341 | 25x | 6.213 |
-| mobilenet_v3_small | 32 | 3.918 | 8.607 | 255.250 | 128x | 6.213 |
+| scratch_cnn | 1 | 40.331 | 76.052 | 24.795 | 12x | 4.719 |
+| scratch_cnn | 32 | 15.842 | 20.206 | 63.123 | 32x | 4.719 |
+| resnet18_frozen | 1 | 44.694 | 109.111 | 22.374 | 11x | 44.788 |
+| resnet18_frozen | 32 | 16.679 | 20.235 | 59.956 | 30x | 44.788 |
+| resnet18_finetune | 1 | 59.397 | 214.141 | 16.836 | 8x | 44.789 |
+| resnet18_finetune | 32 | 15.286 | 24.000 | 65.419 | 33x | 44.789 |
+| mobilenet_v3_small | 1 | 38.235 | 88.525 | 26.154 | 13x | 6.213 |
+| mobilenet_v3_small | 32 | 5.685 | 9.108 | 175.912 | 88x | 6.213 |
 
 Figure: `results/figures/latency_fast.png`
 

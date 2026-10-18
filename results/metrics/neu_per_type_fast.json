@@ -105,7 +105,7 @@
     3
   ],
   "best_epoch": 3,
-  "train_sec": 51.39535019994946,
+  "train_sec": 49.94437189999735,
   "history": [
     {
       "epoch": 1,
