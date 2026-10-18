@@ -1,0 +1,97 @@
+# =====================================================================
+# Project 8 - Automated Visual Quality Inspection
+# Single source of truth for paths and hyperparameters.
+# Every script reads this file; nothing important is hard-coded.
+# =====================================================================
+
+seed: 42
+
+# ---------------------------------------------------------------------
+# Paths (relative to the project root)
+# ---------------------------------------------------------------------
+paths:
+  data_dir: data
+  splits_dir: splits
+  models_dir: models
+  results_dir: results
+  figures_dir: results/figures
+  metrics_dir: results/metrics
+  report_dir: report
+
+# ---------------------------------------------------------------------
+# Datasets
+# ---------------------------------------------------------------------
+data:
+  kaggle_casting: ravirajsinh45/real-life-industrial-dataset-of-casting-product
+  kaggle_neu: kaustubhdikshit/neu-surface-defect-database
+  positive_class: def_front          # defect = label 1 (the class we must not miss)
+  negative_class: ok_front
+  # The raw data has MORE defects than good parts. Real lines have rare defects,
+  # so we subsample defects to this fraction of the train/val/test pool.
+  defect_ratio: 0.10
+  split: {train: 0.70, val: 0.15, test: 0.15}
+
+# ---------------------------------------------------------------------
+# Image pipeline
+# ---------------------------------------------------------------------
+image:
+  size: 224                          # ImageNet backbones were trained at 224
+  # Castings are greyscale but stored as RGB; we keep 3 channels so pretrained
+  # ImageNet weights can be used unchanged.
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+augmentation:
+  hflip: true
+  vflip: true
+  rotation_deg: 15
+  brightness: 0.2
+  contrast: 0.2
+  blur_prob: 0.2
+  blur_sigma: [0.1, 1.0]
+
+# ---------------------------------------------------------------------
+# Training
+# ---------------------------------------------------------------------
+train:
+  batch_size: 32
+  epochs: 25
+  patience: 5                        # early stopping on validation AP
+  lr_head: 1.0e-3
+  lr_backbone: 1.0e-4                # lower LR so fine-tuning doesn't wreck pretrained features
+  lr_scratch: 1.0e-3
+  weight_decay: 1.0e-4
+  imbalance: sampler                 # "sampler" (WeightedRandomSampler) or "weighted_loss" (pos_weight)
+  num_workers: 2
+  scarcity_fractions: [0.10, 0.25, 0.50, 1.00]
+
+# Settings used when a script is run with --fast (laptop CPU, minutes not hours)
+fast:
+  image_size: 128
+  epochs: 3
+  patience: 2
+  subset_fraction: 0.25              # fraction of each split used
+  batch_size: 32
+  num_workers: 0                     # Windows + CPU: worker processes add overhead
+
+# ---------------------------------------------------------------------
+# Evaluation / decision making
+# ---------------------------------------------------------------------
+evaluation:
+  fixed_precisions: [0.90, 0.95]
+  cost_escaped_defect: 50            # cost of shipping a defective part
+  cost_false_reject: 1               # cost of discarding / re-inspecting a good part
+  cost_ratios_sensitivity: [5, 20, 50, 100]
+  threshold_steps: 1001
+
+latency:
+  batch_sizes: [1, 32]
+  warmup_runs: 10
+  timed_runs: 100
+  line_speed_parts_per_sec: 2
+
+robustness:
+  brightness_factors: [0.6, 0.8, 1.2, 1.4, 1.6]
+  contrast_factors: [0.5, 0.7, 1.5]
+  blur_sigmas: [1.0, 2.0, 3.0]
+  rotation_degs: [10, 30, 60]

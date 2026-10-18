@@ -1,0 +1,24 @@
+# Core deep learning
+torch>=2.2
+torchvision>=0.17
+
+# Data / ML utilities
+numpy>=1.26
+pandas>=2.1
+scikit-learn>=1.4
+pillow>=10.0
+pyyaml>=6.0
+tqdm>=4.66
+
+# Plotting
+matplotlib>=3.8
+
+# Dataset download (Kaggle)
+kagglehub>=0.2.9
+
+# Localization (pytorch-grad-cam)
+grad-cam>=1.5.0
+opencv-python-headless>=4.9
+
+# Demo app
+streamlit>=1.32
