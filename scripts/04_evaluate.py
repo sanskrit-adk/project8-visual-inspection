@@ -263,7 +263,12 @@ def main():
     print("Predicting val + test ...")
     val, test, found = collect_predictions(cfg, device)
     comp = comp[comp["model"].isin(found)]
-    selected = comp.loc[comp["average_precision"].idxmax(), "model"]
+    # Best val AP; ties (several models can reach AP 1.0 on 47 val defects) are broken
+    # by the lower val loss, which still separates models whose rankings are perfect.
+    # AP is rounded first: float noise (1.0000000000000002 vs 1.0) must not count as a win.
+    comp = comp.assign(ap_rounded=comp["average_precision"].round(6))
+    selected = comp.sort_values(["ap_rounded", "val_loss"],
+                                ascending=[False, True]).iloc[0]["model"]
     names = found + [BASELINE]
     print(f"Selected model (best val AP): {selected}")
 

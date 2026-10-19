@@ -1,0 +1,111 @@
+{
+  "device": "cpu",
+  "cpu_threads": 8,
+  "torch": "2.14.1+cpu",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "image_size": 224,
+  "warmup_runs": 10,
+  "timed_runs": 100,
+  "preprocess_ms_median": 3.7552999856416136,
+  "line_speed_parts_per_sec": 2,
+  "line_budget_ms_per_part": 500.0,
+  "results": [
+    {
+      "model": "scratch_cnn",
+      "batch_size": 1,
+      "median_ms_per_image": 23.301249981159344,
+      "p5_ms_per_image": 20.776170035242103,
+      "p95_ms_per_image": 31.739644982735626,
+      "end_to_end_ms": 27.056549966800958,
+      "images_per_sec": 42.916152601623025,
+      "headroom_vs_line": 21.458076300811513,
+      "params": 1173473,
+      "checkpoint_mb": 4.718381
+    },
+    {
+      "model": "scratch_cnn",
+      "batch_size": 32,
+      "median_ms_per_image": 27.695235938153928,
+      "p5_ms_per_image": 24.4032303126005,
+      "p95_ms_per_image": 34.15079187507217,
+      "end_to_end_ms": 31.45053592379554,
+      "images_per_sec": 36.107293046107074,
+      "headroom_vs_line": 18.053646523053537,
+      "params": 1173473,
+      "checkpoint_mb": 4.718381
+    },
+    {
+      "model": "resnet18_frozen",
+      "batch_size": 1,
+      "median_ms_per_image": 30.40614997735247,
+      "p5_ms_per_image": 26.264240039745346,
+      "p95_ms_per_image": 35.330540032009594,
+      "end_to_end_ms": 34.161449962994084,
+      "images_per_sec": 32.888083520762535,
+      "headroom_vs_line": 16.444041760381268,
+      "params": 11177025,
+      "checkpoint_mb": 44.787851
+    },
+    {
+      "model": "resnet18_frozen",
+      "batch_size": 32,
+      "median_ms_per_image": 16.47465625046607,
+      "p5_ms_per_image": 15.015681249224144,
+      "p95_ms_per_image": 19.854930626024725,
+      "end_to_end_ms": 20.229956236107682,
+      "images_per_sec": 60.69929379993649,
+      "headroom_vs_line": 30.349646899968246,
+      "params": 11177025,
+      "checkpoint_mb": 44.787851
+    },
+    {
+      "model": "resnet18_finetune",
+      "batch_size": 1,
+      "median_ms_per_image": 20.435349986655638,
+      "p5_ms_per_image": 18.889835011214018,
+      "p95_ms_per_image": 27.15501998027321,
+      "end_to_end_ms": 24.19064997229725,
+      "images_per_sec": 48.934811522827054,
+      "headroom_vs_line": 24.467405761413527,
+      "params": 11177025,
+      "checkpoint_mb": 44.788107
+    },
+    {
+      "model": "resnet18_finetune",
+      "batch_size": 32,
+      "median_ms_per_image": 16.17150781203236,
+      "p5_ms_per_image": 14.816964688361622,
+      "p95_ms_per_image": 20.707849062364403,
+      "end_to_end_ms": 19.926807797673973,
+      "images_per_sec": 61.83715282603105,
+      "headroom_vs_line": 30.918576413015526,
+      "params": 11177025,
+      "checkpoint_mb": 44.788107
+    },
+    {
+      "model": "mobilenet_v3_small",
+      "batch_size": 1,
+      "median_ms_per_image": 9.114400018006563,
+      "p5_ms_per_image": 8.307054993929341,
+      "p95_ms_per_image": 11.454735018196516,
+      "end_to_end_ms": 12.869700003648177,
+      "images_per_sec": 109.71649236640734,
+      "headroom_vs_line": 54.85824618320367,
+      "params": 1518881,
+      "checkpoint_mb": 6.211349
+    },
+    {
+      "model": "mobilenet_v3_small",
+      "batch_size": 32,
+      "median_ms_per_image": 3.276731250480225,
+      "p5_ms_per_image": 2.9309279688277456,
+      "p95_ms_per_image": 3.698564374099078,
+      "end_to_end_ms": 7.0320312361218384,
+      "images_per_sec": 305.18218418231396,
+      "headroom_vs_line": 152.59109209115698,
+      "params": 1518881,
+      "checkpoint_mb": 6.211349
+    }
+  ],
+  "note": "Timed on the machine above; other running processes inflate numbers."
+}

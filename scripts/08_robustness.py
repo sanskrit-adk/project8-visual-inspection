@@ -177,7 +177,7 @@ def main():
     rows = []
     for fam, level, fn in conds:
         loader = DataLoader(R.PerturbedDataset(base, fn), batch_size=cfg["train"]["batch_size"],
-                            num_workers=cfg["train"]["num_workers"])
+                            num_workers=0)  # perturbations are closures: not picklable on Windows
         probs, y = score_all(models, loader, device)
         for m, p in probs.items():
             row = {"family": fam, "level": level, "model": m, "prevalence": float(y.mean()),

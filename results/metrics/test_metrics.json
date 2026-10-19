@@ -1,0 +1,143 @@
+{
+  "n_test": 471,
+  "n_test_defects": 47,
+  "n_test_groups": 94,
+  "n_boot_valid": 2000,
+  "selected_model": "mobilenet_v3_small",
+  "paired_ap_vs_selected": {
+    "scratch_cnn": {
+      "ap_diff": -0.0013584906279319187,
+      "ci": [
+        -0.005762741713611191,
+        2.220446049250313e-16
+      ],
+      "frac_boot_diff_le_0": 0.9285
+    },
+    "resnet18_frozen": {
+      "ap_diff": 0.05056990452095533,
+      "ci": [
+        0.0011304485193782327,
+        0.11627007196930736
+      ],
+      "frac_boot_diff_le_0": 0.018
+    },
+    "resnet18_finetune": {
+      "ap_diff": -0.0013584906279319187,
+      "ci": [
+        -0.005762741713611191,
+        2.220446049250313e-16
+      ],
+      "frac_boot_diff_le_0": 0.9365
+    },
+    "background_only": {
+      "ap_diff": 0.3162642678741815,
+      "ci": [
+        0.13950628431598594,
+        0.4729609771742155
+      ],
+      "frac_boot_diff_le_0": 0.0
+    }
+  },
+  "operating_point_selected": {
+    "threshold": 0.0002841246023308486,
+    "tp": 47,
+    "fp": 15,
+    "fn": 0,
+    "tn": 409,
+    "precision": 0.7580645161290323,
+    "recall": 1.0,
+    "false_reject_rate": 0.03537735849056604,
+    "threshold_source": "val threshold for 95% precision",
+    "errors_with_label_conflict": 0,
+    "label_conflict_images": 0,
+    "error_rate_label_conflict": NaN,
+    "error_rate_other": 0.03184713375796178
+  },
+  "metrics": [
+    {
+      "model": "scratch_cnn",
+      "selected": false,
+      "average_precision": 1.0,
+      "ap_ci_low": 0.9999999999999998,
+      "ap_ci_high": 1.0000000000000002,
+      "roc_auc": 1.0,
+      "auc_ci_low": 0.9999999999999999,
+      "auc_ci_high": 1.0,
+      "brier": 0.01678481139242649,
+      "thr_p90_from_val": 0.29985305666923523,
+      "test_precision_p90": 0.8392857142857143,
+      "test_recall_p90": 1.0,
+      "thr_p95_from_val": 0.35965174436569214,
+      "test_precision_p95": 0.9591836734693877,
+      "test_recall_p95": 1.0
+    },
+    {
+      "model": "resnet18_frozen",
+      "selected": false,
+      "average_precision": 0.9480716048511127,
+      "ap_ci_low": 0.8823748244190692,
+      "ap_ci_high": 0.9974737913631931,
+      "roc_auc": 0.9838418305901245,
+      "auc_ci_low": 0.9560066176730383,
+      "auc_ci_high": 0.9996311980789981,
+      "brier": 0.07708054780960083,
+      "thr_p90_from_val": 0.6212789416313171,
+      "test_precision_p90": 0.9111111111111111,
+      "test_recall_p90": 0.8723404255319149,
+      "thr_p95_from_val": 0.6696264743804932,
+      "test_precision_p95": 1.0,
+      "test_recall_p95": 0.8085106382978723
+    },
+    {
+      "model": "resnet18_finetune",
+      "selected": false,
+      "average_precision": 1.0,
+      "ap_ci_low": 0.9999999999999998,
+      "ap_ci_high": 1.0000000000000002,
+      "roc_auc": 0.9999999999999999,
+      "auc_ci_low": 0.9999999999999999,
+      "auc_ci_high": 1.0,
+      "brier": 0.0002671044785529375,
+      "thr_p90_from_val": 0.0528264045715332,
+      "test_precision_p90": 0.9215686274509803,
+      "test_recall_p90": 1.0,
+      "thr_p95_from_val": 0.1979854702949524,
+      "test_precision_p95": 1.0,
+      "test_recall_p95": 1.0
+    },
+    {
+      "model": "mobilenet_v3_small",
+      "selected": true,
+      "average_precision": 0.9986415093720681,
+      "ap_ci_low": 0.9942372582863888,
+      "ap_ci_high": 1.0000000000000002,
+      "roc_auc": 0.9998494580489763,
+      "auc_ci_low": 0.9992273253374808,
+      "auc_ci_high": 1.0,
+      "brier": 0.00673608249053359,
+      "thr_p90_from_val": 0.00015651274588890374,
+      "test_precision_p90": 0.6438356164383562,
+      "test_recall_p90": 1.0,
+      "thr_p95_from_val": 0.0002841246023308486,
+      "test_precision_p95": 0.7580645161290323,
+      "test_recall_p95": 1.0
+    },
+    {
+      "model": "background_only",
+      "selected": false,
+      "average_precision": 0.6823772414978866,
+      "ap_ci_low": 0.5252186659872558,
+      "ap_ci_high": 0.8601309480469805,
+      "roc_auc": 0.9551886792452831,
+      "auc_ci_low": 0.9040319724998181,
+      "auc_ci_high": 0.9826489610220476,
+      "brier": 0.058487489398703914,
+      "thr_p90_from_val": 0.7516011942266325,
+      "test_precision_p90": 1.0,
+      "test_recall_p90": 0.0851063829787234,
+      "thr_p95_from_val": 0.7516011942266325,
+      "test_precision_p95": 1.0,
+      "test_recall_p95": 0.0851063829787234
+    }
+  ]
+}
